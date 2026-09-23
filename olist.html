@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1.0" name="viewport"/><meta content="Olist Brazilian E-Commerce SQL Analysis — Anudeep Marapally" name="description"/><title>Olist Brazilian E-Commerce SQL Analysis | Anudeep Marapally</title><link href="style.css" rel="stylesheet"/>
+<style>
+.project-page{--pp-bg:#f7f9fc;--pp-card:#fff;--pp-text:#172033;--pp-muted:#657085;--pp-blue:#2f6fed;--pp-blue2:#174ea6;--pp-line:#dfe6ef;--pp-soft:#eef5ff;background:var(--pp-bg);color:var(--pp-text);min-height:100vh}
+.project-page *{box-sizing:border-box}.project-page a{text-decoration:none;color:inherit}.project-header{position:sticky;top:0;z-index:30;display:grid;grid-template-columns:minmax(280px,1fr) auto;align-items:stretch;min-height:70px;background:#fff;border-bottom:1px solid var(--pp-line);box-shadow:0 4px 18px rgba(35,59,91,.05)}
+.project-title{display:flex;align-items:center;padding:14px 24px;font-size:1.16rem;font-weight:850;letter-spacing:-.025em;min-width:0}.project-title span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.project-actions{display:flex;align-items:center;gap:8px;padding:10px 18px}.project-action{display:inline-flex;align-items:center;justify-content:center;min-width:112px;padding:10px 14px;border:1px solid #c9d7ec;border-radius:8px;background:#fff;color:#244d8e;font-size:.72rem;font-weight:850;letter-spacing:.04em}.project-action.primary{background:var(--pp-blue);border-color:var(--pp-blue);color:#fff}.project-action:hover{transform:translateY(-1px);box-shadow:0 5px 15px rgba(47,111,237,.14)}
+.project-main{width:min(1540px,100%);margin:0 auto;padding:14px 16px 65px}.project-cards{display:grid;grid-template-columns:1.35fr .95fr 1.05fr;gap:10px;margin-bottom:10px}.info-card{min-height:82px;padding:12px 16px;border:1px solid var(--pp-line);border-radius:8px;background:#fff}.card-label{display:block;margin-bottom:6px;color:#3b67b1;font-size:.66rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase}.info-card p{margin:0;color:#4e5b6f;font-size:.78rem;line-height:1.45}.info-card a{color:var(--pp-blue);font-weight:800}.data-area{display:grid;grid-template-columns:1fr 1.18fr;gap:0;border:1px solid var(--pp-line);border-radius:8px;background:#fff;margin-bottom:14px}.data-block{padding:13px 16px;min-width:0}.data-block+.data-block{border-left:1px solid var(--pp-line)}.data-block h3{margin:0 0 8px;font-size:.78rem;letter-spacing:.03em}.data-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 18px}.data-item{font-size:.72rem;color:#536074;line-height:1.45}.data-item b{color:#26344b}.clean-list{margin:0;padding-left:16px;color:#536074;font-size:.72rem;line-height:1.45;columns:2;column-gap:28px}.clean-list li{break-inside:avoid;margin-bottom:4px}
+.analysis-shell{display:grid;grid-template-columns:292px minmax(0,1fr);gap:12px;align-items:start}.question-sidebar{position:sticky;top:84px;max-height:calc(100vh - 98px);overflow:auto;border:1px solid var(--pp-line);border-radius:8px;background:#fff}.questions-heading{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border-bottom:1px solid var(--pp-line);font-size:.72rem;font-weight:900;letter-spacing:.08em}.questions-heading small{color:#7b8799;font-size:.58rem;letter-spacing:.05em}.question-list{padding:7px}.question-link{width:100%;display:grid;grid-template-columns:31px 1fr;gap:8px;align-items:start;text-align:left;padding:8px 7px;margin:1px 0;border:0;border-radius:7px;background:transparent;color:#566276;cursor:pointer}.question-link span{display:grid;place-items:center;width:27px;height:27px;border:1px solid #d6deea;border-radius:6px;color:#65758c;font-size:.63rem;font-weight:900}.question-link strong{font-size:.69rem;line-height:1.3;font-weight:700;padding-top:4px}.question-link:hover{background:#f2f7ff;color:#2457aa}.question-link:focus,.question-link:active{background:#eaf3ff;color:#1d55b0;box-shadow:inset 3px 0 0 var(--pp-blue)}.question-link:focus span,.question-link:active span{background:var(--pp-blue);border-color:var(--pp-blue);color:#fff}
+.analysis-main{min-width:0}.main-tab-label{margin:0 0 8px;padding:9px 12px;border:1px solid var(--pp-line);border-radius:7px;background:#fff;color:#5d6b80;font-size:.67rem;font-weight:900;letter-spacing:.1em}.question-panel{scroll-margin-top:90px;margin-bottom:10px;border:1px solid var(--pp-line);border-radius:8px;background:#fff;overflow:hidden}.question-panel + .question-panel{position:relative;margin-top:14px}.question-panel + .question-panel::before{content:"";position:absolute;left:0;right:0;top:-8px;height:1px;background:#cbd7e8}.question-panel:target{border-color:#9fc2fb;box-shadow:0 8px 22px rgba(47,111,237,.08)}.question-head{display:flex;align-items:center;gap:10px;padding:9px 12px;border-bottom:1px solid var(--pp-line);background:#fbfdff}.q-num{flex:0 0 auto;color:var(--pp-blue);font-size:.7rem;font-weight:950}.question-head h2{margin:0;font-size:.82rem;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:-.01em}.question-body{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(260px,.75fr);gap:0}.query-block{min-width:0;padding:11px 13px}.insight-block{padding:11px 13px;border-left:1px solid var(--pp-line);background:#fbfdff}.block-label{margin-bottom:6px;color:#3266b8;font-size:.61rem;font-weight:900;letter-spacing:.1em}.query-block pre{margin:0;max-height:none;overflow:visible;white-space:pre-wrap;word-break:break-word;background:#f5f8fc;border:1px solid #e0e7f0;border-radius:6px;padding:10px 11px;color:#26364d;font:500 .64rem/1.42 ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace}.insight-block p{margin:0;color:#4f5c70;font-size:.74rem;line-height:1.52}.insight-highlight{color:#137b4b;font-weight:850}.analysis-note{margin:8px 0 0;color:#7a8799;font-size:.66rem}
+.dashboard-section{margin-top:22px;scroll-margin-top:90px}.section-heading{margin-bottom:9px}.section-heading h2{margin:0 0 4px;font-size:1.18rem;letter-spacing:-.025em}.section-heading p:last-child{margin:0;color:var(--pp-muted);font-size:.73rem}.dashboard-frame{border:1px solid var(--pp-line);border-radius:8px;background:#fff;overflow:hidden;padding:8px}.dashboard-frame img{display:block;width:100%;max-height:620px;object-fit:contain;background:#f4f8ff}.dashboard-frame .dash-placeholder{min-height:280px;display:grid;place-items:center;color:#71809a;background:#f4f8ff;font-size:.8rem}.dashboard-link-row{display:flex;justify-content:flex-end;margin-top:8px}.dashboard-link{display:inline-flex;padding:9px 14px;border-radius:7px;background:var(--pp-blue);color:#fff!important;font-size:.68rem;font-weight:900}.conclusion-section,.repo-section{margin-top:10px;padding:14px 16px;border:1px solid var(--pp-line);border-radius:8px;background:#fff}.conclusion-section{display:grid;grid-template-columns:230px 1fr;gap:20px;align-items:start}.conclusion-section h2,.repo-section h2{margin:0 0 5px;font-size:1rem}.conclusion-section p,.repo-section p{margin:0;color:#536074;font-size:.75rem;line-height:1.55}.repo-section{display:flex;justify-content:space-between;align-items:center;gap:20px}.github-button{display:inline-flex;align-items:center;gap:8px;white-space:nowrap;padding:10px 14px;border-radius:7px;background:#172033;color:#fff!important;font-size:.68rem;font-weight:900}.detail-footer{display:flex;justify-content:space-between;margin-top:10px;padding:14px 4px;color:#71809a;font-size:.72rem}.detail-footer a:hover{color:var(--pp-blue)}.detail-footer .footer-links{display:flex;gap:18px;align-items:center}.detail-footer span{white-space:nowrap}
+@media(max-width:1000px){.project-cards{grid-template-columns:1fr 1fr}.project-cards .info-card:first-child{grid-column:1/-1}.analysis-shell{grid-template-columns:250px minmax(0,1fr)}.question-body{grid-template-columns:1fr}.insight-block{border-left:0;border-top:1px solid var(--pp-line)}}
+@media(max-width:760px){.project-header{position:relative;grid-template-columns:1fr}.project-title{padding:13px 16px}.project-actions{padding:0 16px 12px}.project-action{flex:1}.project-main{padding:10px 10px 45px}.project-cards{grid-template-columns:1fr}.project-cards .info-card:first-child{grid-column:auto}.data-area{grid-template-columns:1fr}.data-block+.data-block{border-left:0;border-top:1px solid var(--pp-line)}.clean-list{columns:1}.analysis-shell{display:block}.question-sidebar{position:relative;top:auto;max-height:none;margin-bottom:10px}.question-list{display:grid;grid-template-columns:1fr 1fr;gap:2px}.question-link{margin:0}.question-head h2{white-space:normal}.question-body{grid-template-columns:1fr}.insight-block{border-left:0;border-top:1px solid var(--pp-line)}.conclusion-section{grid-template-columns:1fr;gap:8px}.repo-section{display:grid}.github-button{justify-content:center}}
+</style>
+<style>
+/* v12 project-detail refinements */
+.project-page .project-main{width:min(1680px,100%);padding-left:10px;padding-right:10px}
+.project-page .project-cards{gap:8px}
+.project-page .info-card{min-height:68px;padding:10px 14px}
+.project-page .card-label{font-size:.72rem;color:#1d55b0;letter-spacing:.075em;margin-bottom:4px}
+.project-page .info-card p{font-size:.82rem;color:#26344b;line-height:1.42;font-weight:560}
+.project-page .info-card a{color:#174ea6;font-weight:800}
+.project-page .questions-heading{padding:10px 13px;color:#172033;font-size:.78rem;background:#f8fbff}
+.project-page .questions-heading small{display:none}
+.project-page .analysis-shell{grid-template-columns:330px minmax(0,1fr);gap:10px}
+.project-page .question-sidebar{top:82px}
+.project-page .question-link{padding:9px 8px}
+.project-page .question-link strong{font-size:.72rem;color:#3b485c}
+.project-page .question-link.active{background:#eaf3ff;color:#174ea6;box-shadow:inset 3px 0 0 #2f6fed}
+.project-page .question-link.active strong{color:#174ea6;font-weight:850}
+.project-page .question-link.active span{background:#2f6fed;border-color:#2f6fed;color:#fff}
+.project-page .question-panel{margin-bottom:18px}
+.project-page .question-panel + .question-panel{margin-top:18px}
+.project-page .question-panel + .question-panel::before{top:-10px;background:#9eb1ca;height:2px}
+.project-page .question-panel.is-active{border-color:#a9c8f7;box-shadow:0 7px 20px rgba(47,111,237,.08)}
+.project-page .question-head{padding:10px 13px;background:#f8fbff}
+.project-page .question-head h2{font-size:.88rem;color:#172033}
+.project-page .q-num{font-size:.72rem}
+.project-page .block-label{font-size:.66rem;color:#174ea6}
+.project-page .query-block pre{font-size:.68rem;line-height:1.48}
+.project-page .insight-block p{font-size:.78rem;color:#26344b}
+.project-page .main-tab-label{font-size:.7rem;color:#174ea6;background:#f8fbff;font-weight:900}
+.project-page .overall-insights{margin-top:22px;padding:16px;border:1px solid #cfdbea;border-radius:8px;background:#fff}
+.project-page .overall-insights .section-heading{margin-bottom:11px}
+.project-page .overall-insights .section-heading h2{color:#172033}
+.project-page .overall-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}
+.project-page .overall-item{padding:12px;border:1px solid #dfe6ef;border-radius:7px;background:#f8fbff}
+.project-page .overall-item h3{margin:0 0 5px;color:#174ea6;font-size:.78rem;line-height:1.25}
+.project-page .overall-item p{margin:0;color:#3f4c60;font-size:.73rem;line-height:1.5}
+.project-page .overall-intro{margin:0;color:#536074;font-size:.76rem;line-height:1.55}
+.project-page .conclusion-section{margin-top:12px;border-color:#c6d4e5;background:#fff}
+.project-page .conclusion-section h2{color:#172033;font-size:1.08rem}
+.project-page .conclusion-section p{font-size:.79rem;color:#26344b;line-height:1.65}
+@media(max-width:1100px){.project-page .analysis-shell{grid-template-columns:285px minmax(0,1fr)}.project-page .overall-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:760px){.project-page .project-main{padding-left:10px;padding-right:10px}.project-page .analysis-shell{grid-template-columns:1fr}.project-page .overall-grid{grid-template-columns:1fr}}
+</style>
+<style>
+/* Project-view responsive fix: questions are always one per row.
+   On smaller screens the Questions panel sits above Main Analysis. */
+.project-page .question-list{
+  display:block !important;
+}
+.project-page .question-link{
+  display:grid !important;
+  grid-template-columns:31px minmax(0,1fr) !important;
+  width:100% !important;
+  margin:1px 0 !important;
+}
+@media (max-width:900px){
+  .project-page .analysis-shell{
+    display:block !important;
+  }
+  .project-page .question-sidebar{
+    position:relative !important;
+    top:auto !important;
+    max-height:none !important;
+    width:100% !important;
+    margin-bottom:10px !important;
+  }
+  .project-page .analysis-main{
+    width:100% !important;
+  }
+}
+</style>
+
+</head><body class="project-page" id="top">
+<header class="project-header"><a class="project-title" href="projects.html"><span>Olist Brazilian E-Commerce SQL Analysis</span></a><div class="project-actions"><a class="project-action" href="index.html">MAIN HOME</a><a class="project-action primary" href="projects.html">PROJECTS PAGE</a></div></header>
+<main class="project-main">
+<section class="project-cards"><div class="info-card"><span class="card-label">PROJECT OVERVIEW</span><p>A MySQL analysis of the Olist marketplace, moving from data-quality validation into revenue, customer, product, seller and delivery decisions.</p></div><div class="info-card"><span class="card-label">TOOLS &amp; TECHNOLOGIES</span><p>MySQL · MySQL Workbench · SQL · Data Cleaning · Data Quality Validation · CTEs · Window Functions</p></div><div class="info-card"><span class="card-label">DATA SOURCE</span><p><a href="https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce" rel="noopener noreferrer" target="_blank">Olist Brazilian E-Commerce Public Dataset ↗</a></p></div></section>
+<section class="data-area"><div class="data-block"><h3>DATA OVERVIEW</h3><div class="data-grid"><div class="data-item"><b>~100K orders</b></div><div class="data-item"><b>96,478 delivered orders</b></div><div class="data-item"><b>~99K customer records</b></div><div class="data-item"><b>110,197 delivered product lines</b></div><div class="data-item"><b>3,095 sellers</b></div><div class="data-item"><b>32,216 distinct delivered products</b></div></div></div><div class="data-block"><h3>DATA CLEANING &amp; PREPARATION</h3><ul class="clean-list"><li>Converted and validated date/time fields before analysis</li><li>Checked NULLs, blanks, duplicate customer identifiers and inconsistent categories</li><li>Validated approval → carrier → customer delivery date relationships</li><li>Created/used primary and foreign-key relationships across the relational model</li><li>Excluded/flagged inconsistent records before KPI calculations</li><li>Validated payment, review, product and delivery relationships with cross-table checks</li></ul></div></section>
+<section class="analysis-shell"><aside class="question-sidebar"><div class="questions-heading"><span>QUESTIONS</span></div><nav aria-label="Project questions" class="question-list"><a class="question-link" href="#q1"><span>01</span><strong>Overall revenue and order scale</strong></a><a class="question-link" href="#q2"><span>02</span><strong>Revenue growth and the strongest period</strong></a><a class="question-link" href="#q3"><span>03</span><strong>Which product categories drive the most revenue?</strong></a><a class="question-link" href="#q4"><span>04</span><strong>Which individual products are the strongest revenue generators?</strong></a><a class="question-link" href="#q5"><span>05</span><strong>How strong is customer retention and repeat purchasing?</strong></a><a class="question-link" href="#q6"><span>06</span><strong>Which customers have the highest lifetime value?</strong></a><a class="question-link" href="#q7"><span>07</span><strong>Which RFM segments contain the most valuable customers?</strong></a><a class="question-link" href="#q8"><span>08</span><strong>Which geographies generate the most revenue?</strong></a><a class="question-link" href="#q9"><span>09</span><strong>How much delivery friction exists?</strong></a><a class="question-link" href="#q10"><span>10</span><strong>Which states show the longest delivery times?</strong></a><a class="question-link" href="#q11"><span>11</span><strong>Which payment methods dominate transactions?</strong></a><a class="question-link" href="#q12"><span>12</span><strong>Which sellers combine scale and customer outcomes?</strong></a><a class="question-link" href="#q13"><span>13</span><strong>Which sellers have the strongest customer ratings?</strong></a><a class="question-link" href="#q14"><span>14</span><strong>How does product size relate to freight cost?</strong></a><a class="question-link" href="#q15"><span>15</span><strong>What share of orders are delivered successfully?</strong></a><a class="question-link" href="#q16"><span>16</span><strong>How does revenue change month over month?</strong></a><a class="question-link" href="#q17"><span>17</span><strong>What is the cumulative revenue trajectory?</strong></a><a class="question-link" href="#q18"><span>18</span><strong>What does cohort retention reveal?</strong></a><a class="question-link" href="#q19"><span>19</span><strong>Which sellers serve the largest number of unique customers?</strong></a><a class="question-link" href="#q20"><span>20</span><strong>What should the marketplace prioritize?</strong></a></nav></aside><section class="analysis-main"><div class="main-tab-label">MAIN ANALYSIS · QUESTION → QUERY / ANALYSIS → INSIGHT</div><article class="question-panel" id="q1">
+<div class="question-head"><span class="q-num">01.</span><h2>Overall revenue and order scale</h2></div>
+<div class="question-body"><section class="query-block"><div class="block-label">QUERY / ANALYSIS</div><pre><code>SELECT
+    ROUND(SUM(p.payment_value), 2) AS total_revenue,
+    COUNT(DISTINCT o.order_id) AS total_orders,
+    ROUND(SUM(p.payment_value) / COUNT(DISTINCT o.order_id), 2) AS average_order_value
+FROM orders o
+JOIN payments p ON p.order_id = o.order_id
+WHERE o.order_status = 'Delivered';</code></pre></section><section class="insight-block"><div class="block-label">INSIGHT</div><p>The delivered-order analysis reports about R$15.42M in payment value across 96,478 delivered orders, giving an AOV of about R$159.86.</p></section></div></article><article class="question-panel" id="q2">
+<div class="question-head"><span class="q-num">02.</span><h2>Revenue growth and the strongest period</h2></div>
+<div class="question-body"><section class="query-block"><div class="block-label">QUERY / ANALYSIS</div><pre><code>SELECT
+    DATE_FORMAT(o.order_purchase_timestamp, '%Y-%m') AS month,
+    ROUND(SUM(p.payment_value), 2) AS monthly_revenue,
+    COUNT(DISTINCT o.order_id) AS orders
+FROM orders o
+JOIN payments p ON o.order_id = p.order_id
+WHERE o.order_status = 'Delivered'
+GROUP BY DATE_FORMAT(o.order_purchase_timestamp, '%Y-%m')
+ORDER BY month;</code></pre></section><section class="insight-block"><div class="block-label">INSIGHT</div><p>Revenue is strongly seasonal. November 2017 is the standout period in the project, with monthly revenue above R$1.15M and the highest order volume.</p></section></div></article><article class="question-panel" id="q3">
+<div class="question-head"><span class="q-num">03.</span><h2>Which product categories drive the most revenue?</h2></div>
+<div class="question-body"><section class="query-block"><div class="block-label">QUERY / ANALYSIS</div><pre><code>SELECT
+    pc.product_category_english AS product_category,
+    ROUND(SUM(i.price + i.freight_value), 2) AS revenue_generated
+FROM products p
+JOIN items i ON i.product_id = p.product_id
+JOIN product_category pc ON p.category_name = pc.product_category
+JOIN orders o ON o.order_id = i.order_id
+WHERE o.order_status = 'Delivered'
+GROUP BY pc.product_category_english
+ORDER BY revenue_generated DESC;</code></pre></section><section class="insight-block"><div class="block-label">INSIGHT</div><p>Revenue is concentrated in a smaller group of categories, led by Watches &amp; Gifts and Health &amp; Beauty in the project analysis. Those categories deserve closer assortment and merchandising attention.</p></section></div></article><article class="question-panel" id="q4">
+<div class="question-head"><span class="q-num">04.</span><h2>Which individual products are the strongest revenue generators?</h2></div>
+<div class="question-body"><section class="query-block"><div class="block-label">QUERY / ANALYSIS</div><pre><code>SELECT
+    p.product_id,
+    pc.product_category_english AS product_category,
+    ROUND(SUM(i.price), 2) AS revenue,
+    COUNT(*) AS units_sold
+FROM items i
+JOIN products p ON p.product_id = i.product_id
+JOIN product_category pc ON pc.product_category = p.category_name
+JOIN orders o ON o.order_id = i.order_id
+WHERE o.order_status = 'Delivered'
+GROUP BY p.product_id, pc.product_category_english
+ORDER BY revenue DESC
+LIMIT 10;</code></pre></section><section class="insight-block"><div class="block-label">INSIGHT</div><p>The analysis identifies a small set of products with outsized revenue contribution. Product-level concentration helps prioritize inventory and seller attention.</p></section></div></article><article class="question-panel" id="q5">
+<div class="question-head"><span class="q-num">05.</span><h2>How strong is customer retention and repeat purchasing?</h2></div>
+<div class="question-body"><section class="query-block"><div class="block-label">QUERY / ANALYSIS</div><pre><code>WITH customer_orders AS (
+    SELECT c.customer_unique_id,
+           COUNT(DISTINCT o.order_id) AS order_count
+    FROM customers c
+    JOIN orders o ON c.customer_id = o.customer_id
+    WHERE o.order_status = 'Delivered'
+    GROUP BY c.customer_unique_id
+)
+SELECT
+    CASE WHEN order_count = 1 THEN 'One-time' ELSE 'Repeat' END AS customer_type,
+    COUNT(*) AS customers
+FROM customer_orders
+GROUP BY customer_type;</code></pre></section><section class="insight-block"><div class="block-label">INSIGHT</div><p>Repeat purchasing is a weak point. The project also identifies only 471 customers ordering in back-to-back months, making retention a major growth opportunity.</p></section></div></article><article class="question-panel" id="q6">
+<div class="question-head"><span class="q-num">06.</span><h2>Which customers have the highest lifetime value?</h2></div>
+<div class="question-body"><section class="query-block"><div class="block-label">QUERY / ANALYSIS</div><pre><code>SELECT
+    c.customer_unique_id,
+    ROUND(SUM(p.payment_value), 2) AS total_purchase,
+    COUNT(DISTINCT o.order_id) AS orders
+FROM customers c
+JOIN orders o ON o.customer_id = c.customer_id
+JOIN payments p ON o.order_id = p.order_id
+WHERE o.order_status = 'Delivered'
+GROUP BY c.customer_unique_id
+ORDER BY total_purchase DESC
+LIMIT 10;</code></pre></section><section class="insight-block"><div class="block-label">INSIGHT</div><p>Customer value is highly uneven: a small group of customers contributes disproportionately high lifetime purchase value and should be protected with retention-focused activity.</p></section></div></article><article class="question-panel" id="q7">
+<div class="question-head"><span class="q-num">07.</span><h2>Which RFM segments contain the most valuable customers?</h2></div>
+<div class="question-body"><section class="query-block"><div class="block-label">QUERY / ANALYSIS</div><pre><code>WITH rfm AS (
+    SELECT c.customer_unique_id,
+           TIMESTAMPDIFF(DAY, MAX(o.order_purchase_timestamp), '2018-10-17 17:30:00') AS recency,
+           COUNT(DISTINCT o.order_id) AS frequency,
+           SUM(i.price + i.freight_value) AS monetary
+    FROM orders o
+    JOIN customers c ON o.customer_id = c.customer_id
+    JOIN items i ON i.order_id = o.order_id
+    WHERE o.order_status = 'Delivered'
+    GROUP BY c.customer_unique_id
+)
+SELECT * FROM rfm
+ORDER BY monetary DESC;</code></pre></section><section class="insight-block"><div class="block-label">INSIGHT</div><p>RFM analysis separates recent, frequent and high-spend customers so retention effort can focus on the segments with the greatest economic value.</p></section></div></article><article class="question-panel" id="q8">
+<div class="question-head"><span class="q-num">08.</span><h2>Which geographies generate the most revenue?</h2></div>
+<div class="question-body"><section class="query-block"><div class="block-label">QUERY / ANALYSIS</div><pre><code>SELECT
+    s.seller_city AS city,
+    ROUND(SUM(i.price), 2) AS total_revenue
+FROM items i
+JOIN sellers s ON s.seller_id = i.seller_id
+JOIN orders o ON o.order_id = i.order_id
+WHERE o.order_status = 'Delivered'
+GROUP BY s.seller_city
+ORDER BY total_revenue DESC
+LIMIT 10;</code></pre></section><section class="insight-block"><div class="block-label">INSIGHT</div><p>São Paulo dominates the project geography analysis, showing that marketplace value is concentrated in major locations and that regional performance should not be treated as uniform.</p></section></div></article><article class="question-panel" id="q9">
+<div class="question-head"><span class="q-num">09.</span><h2>How much delivery friction exists?</h2></div>
+<div class="question-body"><section class="query-block"><div class="block-label">QUERY / ANALYSIS</div><pre><code>SELECT
+    COUNT(*) AS delayed_orders_count,
+    (SELECT COUNT(*) FROM orders WHERE order_status = 'Delivered') AS total_orders,
+    ROUND(100 * COUNT(*) / (SELECT COUNT(*) FROM orders WHERE order_status = 'Delivered'), 2) AS delayed_percentage
+FROM orders
+WHERE order_status = 'Delivered'
+  AND order_delivered_customer_date &gt; order_estimated_delivery_date;</code></pre></section><section class="insight-block"><div class="block-label">INSIGHT</div><p>About 8.11% of delivered orders were later than the estimated delivery date. Delivery reliability is therefore a measurable operational lever.</p></section></div></article><article class="question-panel" id="q10">
+<div class="question-head"><span class="q-num">10.</span><h2>Which states show the longest delivery times?</h2></div>
+<div class="question-body"><section class="query-block"><div class="block-label">QUERY / ANALYSIS</div><pre><code>SELECT
+    s.seller_state AS state,
+    ROUND(AVG(TIMESTAMPDIFF(DAY, o.order_delivered_carrier_date, o.order_delivered_customer_date)), 2) AS avg_shipping_days
+FROM items i
+JOIN sellers s ON i.seller_id = s.seller_id
+JOIN orders o ON o.order_id = i.order_id
+WHERE o.order_approved_at &lt; o.order_delivered_customer_date
+  AND o.order_status = 'Delivered'
+GROUP BY s.seller_state
+ORDER BY avg_shipping_days DESC
+LIMIT 5;</code></pre></section><section class="insight-block"><div class="block-label">INSIGHT</div><p>Delivery time differs sharply by state. The analysis highlights Amazonas as an extreme case, showing where logistics partnerships or fulfillment strategy could have the greatest impact.</p></section></div></article><article class="question-panel" id="q11">
+<div class="question-head"><span class="q-num">11.</span><h2>Which payment methods dominate transactions?</h2></div>
+<div class="question-body"><section class="query-block"><div class="block-label">QUERY / ANALYSIS</div><pre><code>SELECT
+    payment_type,
+    COUNT(DISTINCT order_id) AS number_of_transactions,
+    ROUND(SUM(payment_value), 2) AS payment_value
+FROM payments
+GROUP BY payment_type
+ORDER BY number_of_transactions DESC;</code></pre></section><section class="insight-block"><div class="block-label">INSIGHT</div><p>Credit card is the dominant payment method in the project, so payment friction and installment behavior are strategically important to the marketplace.</p></section></div></article><article class="question-panel" id="q12">
+<div class="question-head"><span class="q-num">12.</span><h2>Which sellers combine scale and customer outcomes?</h2></div>
+<div class="question-body"><section class="query-block"><div class="block-label">QUERY / ANALYSIS</div><pre><code>SELECT
+    i.seller_id,
+    COUNT(DISTINCT i.order_id) AS orders_count,
+    ROUND(SUM(i.price), 2) AS revenue
+FROM items i
+JOIN orders o ON o.order_id = i.order_id
+WHERE o.order_status = 'Delivered'
+GROUP BY i.seller_id
+ORDER BY revenue DESC
+LIMIT 10;</code></pre></section><section class="insight-block"><div class="block-label">INSIGHT</div><p>Seller performance is concentrated: high-volume sellers account for a large share of marketplace activity, making seller quality and delivery performance important management dimensions.</p></section></div></article><article class="question-panel" id="q13">
+<div class="question-head"><span class="q-num">13.</span><h2>Which sellers have the strongest customer ratings?</h2></div>
+<div class="question-body"><section class="query-block"><div class="block-label">QUERY / ANALYSIS</div><pre><code>SELECT
+    i.seller_id,
+    ROUND(AVG(r.review_score), 2) AS avg_review_score
+FROM orders o
+JOIN reviews r ON o.order_id = r.order_id
+JOIN items i ON i.order_id = o.order_id
+WHERE o.order_status = 'Delivered'
+GROUP BY i.seller_id
+ORDER BY avg_review_score DESC
+LIMIT 10;</code></pre></section><section class="insight-block"><div class="block-label">INSIGHT</div><p>Revenue alone does not define seller quality. Comparing seller scale with review scores helps identify sellers that deliver both commercial value and customer satisfaction.</p></section></div></article><article class="question-panel" id="q14">
+<div class="question-head"><span class="q-num">14.</span><h2>How does product size relate to freight cost?</h2></div>
+<div class="question-body"><section class="query-block"><div class="block-label">QUERY / ANALYSIS</div><pre><code>SELECT
+    CASE
+        WHEN (p.length_cm * p.width_cm * p.height_cm) &lt; 500 THEN 'Small'
+        WHEN (p.length_cm * p.width_cm * p.height_cm) &lt; 2000 THEN 'Medium'
+        ELSE 'Large'
+    END AS product_size,
+    ROUND(AVG(i.freight_value), 2) AS avg_freight_value,
+    COUNT(*) AS total_items
+FROM products p
+JOIN items i ON p.product_id = i.product_id
+GROUP BY product_size
+ORDER BY avg_freight_value;</code></pre></section><section class="insight-block"><div class="block-label">INSIGHT</div><p>Freight cost varies with product characteristics. Small and medium products show similar average freight in the project, while larger items create more obvious logistics pressure.</p></section></div></article><article class="question-panel" id="q15">
+<div class="question-head"><span class="q-num">15.</span><h2>What share of orders are delivered successfully?</h2></div>
+<div class="question-body"><section class="query-block"><div class="block-label">QUERY / ANALYSIS</div><pre><code>SELECT
+    order_status,
+    COUNT(*) AS order_count,
+    ROUND(100 * COUNT(*) / (SELECT COUNT(*) FROM orders), 2) AS status_percentage
+FROM orders
+GROUP BY order_status
+ORDER BY order_count DESC;</code></pre></section><section class="insight-block"><div class="block-label">INSIGHT</div><p>Around 97% of orders are delivered. That strong completion rate is positive, but the remaining failed/cancelled flow still matters because it represents lost revenue and customer experience.</p></section></div></article><article class="question-panel" id="q16">
+<div class="question-head"><span class="q-num">16.</span><h2>How does revenue change month over month?</h2></div>
+<div class="question-body"><section class="query-block"><div class="block-label">QUERY / ANALYSIS</div><pre><code>WITH value AS (
+    SELECT DATE_FORMAT(o.order_purchase_timestamp, '%Y-%m-01') AS month_year,
+           ROUND(SUM(i.price), 2) AS revenue
+    FROM orders o
+    JOIN items i ON o.order_id = i.order_id
+    WHERE o.order_purchase_timestamp &gt; '2017-01-01'
+    GROUP BY DATE_FORMAT(o.order_purchase_timestamp, '%Y-%m-01')
+)
+SELECT month_year, revenue,
+       LAG(revenue) OVER (ORDER BY month_year) AS previous_month_revenue,
+       ROUND((revenue - LAG(revenue) OVER (ORDER BY month_year)) / LAG(revenue) OVER (ORDER BY month_year) * 100, 2) AS mom_growth_percent
+FROM value;</code></pre></section><section class="insight-block"><div class="block-label">INSIGHT</div><p>The project excludes inconsistent 2016 data for this comparison and uses month-over-month growth to make the later trend easier to interpret.</p></section></div></article><article class="question-panel" id="q17">
+<div class="question-head"><span class="q-num">17.</span><h2>What is the cumulative revenue trajectory?</h2></div>
+<div class="question-body"><section class="query-block"><div class="block-label">QUERY / ANALYSIS</div><pre><code>WITH revenue AS (
+    SELECT DATE_FORMAT(o.order_purchase_timestamp, '%Y-%m-01') AS month_year,
+           SUM(i.price) AS total_revenue
+    FROM orders o
+    JOIN items i ON i.order_id = o.order_id
+    GROUP BY DATE_FORMAT(o.order_purchase_timestamp, '%Y-%m-01')
+)
+SELECT month_year, total_revenue,
+       SUM(total_revenue) OVER (ORDER BY month_year) AS running_total
+FROM revenue;</code></pre></section><section class="insight-block"><div class="block-label">INSIGHT</div><p>A running total shows how individual monthly performance compounds into the marketplace’s overall revenue trajectory.</p></section></div></article><article class="question-panel" id="q18">
+<div class="question-head"><span class="q-num">18.</span><h2>What does cohort retention reveal?</h2></div>
+<div class="question-body"><section class="query-block"><div class="block-label">QUERY / ANALYSIS</div><pre><code>WITH first_purchase AS (
+    SELECT c.customer_unique_id, MIN(o.order_purchase_timestamp) AS first_purchase
+    FROM orders o
+    JOIN customers c ON c.customer_id = o.customer_id
+    WHERE o.order_status = 'Delivered'
+    GROUP BY c.customer_unique_id
+), cohort AS (
+    SELECT c.customer_unique_id, DATE_FORMAT(fp.first_purchase, '%Y-%m-01') AS cohort_month,
+           DATE_FORMAT(o.order_purchase_timestamp, '%Y-%m-01') AS purchase_month
+    FROM customers c
+    JOIN first_purchase fp ON c.customer_unique_id = fp.customer_unique_id
+    JOIN orders o ON o.customer_id = c.customer_id
+    WHERE o.order_status = 'Delivered'
+)
+SELECT cohort_month, purchase_month, COUNT(DISTINCT customer_unique_id) AS customers
+FROM cohort
+GROUP BY cohort_month, purchase_month
+ORDER BY cohort_month, purchase_month;</code></pre></section><section class="insight-block"><div class="block-label">INSIGHT</div><p>Cohort analysis reinforces the retention problem by showing how quickly customers disappear after their first purchase.</p></section></div></article><article class="question-panel" id="q19">
+<div class="question-head"><span class="q-num">19.</span><h2>Which sellers serve the largest number of unique customers?</h2></div>
+<div class="question-body"><section class="query-block"><div class="block-label">QUERY / ANALYSIS</div><pre><code>SELECT
+    i.seller_id,
+    COUNT(DISTINCT c.customer_unique_id) AS unique_customers_count
+FROM items i
+JOIN orders o ON i.order_id = o.order_id
+JOIN customers c ON c.customer_id = o.customer_id
+WHERE o.order_status = 'Delivered'
+GROUP BY i.seller_id
+ORDER BY unique_customers_count DESC
+LIMIT 10;</code></pre></section><section class="insight-block"><div class="block-label">INSIGHT</div><p>Seller reach adds another dimension to seller performance: the strongest sellers are not only generating revenue, they are serving a broader customer base.</p></section></div></article><article class="question-panel" id="q20">
+<div class="question-head"><span class="q-num">20.</span><h2>What should the marketplace prioritize?</h2></div>
+<div class="question-body"><section class="query-block"><div class="block-label">QUERY / ANALYSIS</div><pre><code>SELECT
+    'Retention' AS priority_area,
+    'High-value one-time customers and repeat purchase behavior' AS evidence
+UNION ALL
+SELECT 'Logistics', 'Delayed orders and state-level delivery differences'
+UNION ALL
+SELECT 'Merchandising', 'Revenue concentration across categories and products';</code></pre></section><section class="insight-block"><div class="block-label">INSIGHT</div><p>The strongest actions are not isolated KPIs: improve repeat purchasing, target high-value customers, reduce logistics friction and focus assortment decisions on the categories and products that drive value.</p></section></div></article><p class="analysis-note">All questions are displayed in order. Select a question on the left to jump directly to its analysis.</p></section></section>
+<section class="dashboard-section"><div class="section-heading"><p class="eyebrow">AFTER THE QUESTIONS</p><h2>Olist E-Commerce Analysis Findings</h2><p>The visual output comes after the analysis so the visitor sees the reasoning before the final picture.</p></div><div class="dashboard-frame"><img alt="Olist E-Commerce Analysis Findings" loading="lazy" src="https://raw.githubusercontent.com/Anudeep-Marapally/Olist-Brazilian-E-Commerce-SQL-Analysis/main/SQL%20Analysis%20Findings%20%26%20Insights.png"/></div></section>
+<section class="overall-insights"><div class="section-heading"><p class="eyebrow">OVERALL INSIGHTS</p><h2>Overall Business Insights</h2><p class="overall-intro">The analysis points to four connected priorities: protect revenue drivers, improve repeat purchasing, reduce delivery friction, and focus seller and assortment decisions on measurable customer value.</p></div><div class="overall-grid"><article class="overall-item"><h3>Revenue is concentrated</h3><p>A relatively small set of categories, products, customers and locations drives a large share of marketplace value.</p></article><article class="overall-item"><h3>Retention is the biggest growth opportunity</h3><p>Strong one-time transaction volume is not matched by equally strong repeat purchasing, making customer reactivation and loyalty important.</p></article><article class="overall-item"><h3>Logistics affects the customer experience</h3><p>Delivery delays and large state-level differences show that fulfillment reliability is a practical lever for satisfaction and marketplace performance.</p></article><article class="overall-item"><h3>Seller quality matters beyond sales</h3><p>Combining seller reach, revenue and review outcomes gives a more useful view of marketplace health than revenue alone.</p></article></div></section><section class="conclusion-section"><div><p class="eyebrow">CONCLUSION</p><h2>What the project tells us</h2></div><p>The Olist analysis shows a marketplace with strong transaction scale but clear opportunities to improve the quality of that growth. Revenue is concentrated in specific categories, products, customers and geographies, while repeat purchasing remains comparatively weak. At the same time, delivery delays and regional logistics differences create avoidable friction. The strongest business response is therefore to protect high-value customers, build repeat-purchase behavior, improve fulfillment reliability and prioritize the sellers and products that consistently create both commercial value and positive customer outcomes.</p></section>
+<section class="repo-section"><div><p class="eyebrow">MORE INFORMATION</p><h2>Want to inspect the project?</h2><p>Repository includes the underlying project files, analysis and documentation.</p></div><a class="github-button" href="https://github.com/Anudeep-Marapally/Olist-Brazilian-E-Commerce-SQL-Analysis" rel="noopener noreferrer" target="_blank">OPEN GITHUB REPOSITORY <span>↗</span></a></section>
+<footer class="site-footer detail-footer"><span>© 2026 Anudeep Marapally · Data Analytics Portfolio</span><div class="footer-links"><a href="projects.html">← Back to Projects Page</a><a href="index.html">Home</a></div></footer>
+</main>
+</html>
+
+<style>
+/* v13 project-detail-only refinements: synchronized question navigation + consistent tab typography */
+.project-page .question-sidebar{
+  position:sticky;
+  top:84px;
+  max-height:calc(100vh - 98px);
+  overflow-y:auto;
+  overscroll-behavior:contain;
+  scrollbar-width:thin;
+}
+.project-page .question-link{
+  transition:background-color .18s ease, color .18s ease, box-shadow .18s ease, transform .18s ease;
+}
+.project-page .question-link.active{
+  background:#eaf3ff;
+  color:#174ea6;
+  box-shadow:inset 3px 0 0 #2f6fed;
+}
+.project-page .question-link.active strong{color:#174ea6;font-weight:850}
+.project-page .question-link.active span{background:#2f6fed;border-color:#2f6fed;color:#fff}
+.project-page .question-sidebar .question-link.active{
+  scroll-margin-top:8px;
+  scroll-margin-bottom:8px;
+}
+
+/* Keep the three top information tabs visually consistent: clear title vs matter hierarchy. */
+.project-page .info-card{font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+.project-page .info-card .card-label{
+  color:#174ea6;
+  font-size:.68rem;
+  line-height:1.2;
+  font-weight:800;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.project-page .info-card p{
+  color:#334155;
+  font-size:.79rem;
+  line-height:1.48;
+  font-weight:500;
+}
+.project-page .info-card a{color:#174ea6;font-weight:650}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const panels = Array.from(document.querySelectorAll('.question-panel[id]'));
+  const links = Array.from(document.querySelectorAll('.question-link[href^="#"]'));
+  const sidebar = document.querySelector('.question-sidebar');
+  if (!panels.length || !links.length) return;
+
+  const linkFor = (id) => links.find(link => link.getAttribute('href') === '#' + id);
+
+  const setActive = (id, moveSidebar = true) => {
+    links.forEach(link => {
+      const active = link.getAttribute('href') === '#' + id;
+      link.classList.toggle('active', active);
+      if (active) link.setAttribute('aria-current', 'step');
+      else link.removeAttribute('aria-current');
+    });
+
+    panels.forEach(panel => panel.classList.toggle('is-active', panel.id === id));
+
+    // Keep the active question visible inside the left panel. This makes the
+    // question list travel with the analysis instead of appearing frozen.
+    if (moveSidebar) {
+      const activeLink = linkFor(id);
+      if (activeLink && sidebar) {
+        const linkRect = activeLink.getBoundingClientRect();
+        const sideRect = sidebar.getBoundingClientRect();
+        const heading = sidebar.querySelector('.questions-heading');
+        const headingHeight = heading ? heading.getBoundingClientRect().height : 0;
+        const topLimit = sideRect.top + headingHeight + 6;
+        const bottomLimit = sideRect.bottom - 8;
+        if (linkRect.top < topLimit || linkRect.bottom > bottomLimit) {
+          activeLink.scrollIntoView({behavior:'smooth', block:'nearest'});
+        }
+      }
+    }
+  };
+
+  // Pick the question whose heading is closest to the reading position.
+  const updateFromScroll = () => {
+    const marker = window.scrollY + Math.min(150, window.innerHeight * 0.24);
+    let current = panels[0];
+    for (const panel of panels) {
+      if (panel.offsetTop <= marker) current = panel;
+      else break;
+    }
+    setActive(current.id, true);
+  };
+
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        updateFromScroll();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, {passive:true});
+
+  links.forEach(link => {
+    link.addEventListener('click', function (event) {
+      event.preventDefault();
+      const id = this.getAttribute('href').slice(1);
+      const target = document.getElementById(id);
+      if (!target) return;
+      setActive(id, true);
+      target.scrollIntoView({behavior:'smooth', block:'start'});
+      history.replaceState(null, '', '#' + id);
+    });
+  });
+
+  // Respect a question hash when the page opens; otherwise start at Q1.
+  const initial = window.location.hash ? window.location.hash.slice(1) : panels[0].id;
+  const initialPanel = document.getElementById(initial) || panels[0];
+  setActive(initialPanel.id, true);
+  if (window.location.hash && initialPanel) {
+    setTimeout(() => initialPanel.scrollIntoView({behavior:'auto', block:'start'}), 0);
+  }
+});
+</script>
+
+<script src="portfolio-data.js"></script>
+<script>
+(function(){
+  const data=getPortfolioData();
+  const p=data.projects.find(x=>x.file===location.pathname.split('/').pop()) || data.projects.find(x=>x.id===document.body.dataset.projectId);
+  if(!p) return;
+  const set=(sel,val)=>{const e=document.querySelector(sel); if(e && val!==undefined) e.textContent=val;};
+  document.title=p.title+' | '+data.profile.name;
+  const title=document.querySelector('.project-title'); if(title) title.textContent=p.title;
+  const titleSpan=document.querySelector('.project-title span'); if(titleSpan) titleSpan.textContent=p.title;
+  const infos=document.querySelectorAll('.project-cards .info-card');
+  if(infos[0]?.querySelector('p')) infos[0].querySelector('p').textContent=p.overview;
+  if(infos[1]?.querySelector('p')) infos[1].querySelector('p').textContent=p.toolsText;
+  if(infos[2]){ const a=infos[2].querySelector('a'); if(a){a.textContent=(p.source.label||'Data source')+' ↗'; a.href=p.source.url||'#';} }
+  const blocks=document.querySelectorAll('.data-block');
+  [p.dataOverview,p.cleaning].forEach((arr,i)=>{if(blocks[i]){const ul=blocks[i].querySelector('ul');if(ul){ul.innerHTML='';arr.forEach(t=>{const li=document.createElement('li');li.textContent=t;ul.appendChild(li);});}}});
+  const mainLabel=document.querySelector('.main-tab-label'); if(mainLabel) mainLabel.textContent=p.analysisLabel;
+  const panels=document.querySelectorAll('.question-panel');
+  p.questions.forEach((q,i)=>{const panel=panels[i];if(!panel)return; const h=panel.querySelector('h2');if(h)h.textContent=q.title; const qbox=panel.querySelector('.query-block');if(qbox){const pre=qbox.querySelector('pre');if(pre)pre.textContent=q.query;else qbox.textContent='QUERY / ANALYSIS '+q.query;} const ib=panel.querySelector('.insight-block');if(ib){const text=ib.querySelector('p'); if(text) text.textContent=q.insight; else {const rest=ib.querySelector('.insight-text'); if(rest)rest.textContent=q.insight; else ib.textContent='INSIGHT '+q.insight;}}});
+  const links=document.querySelectorAll('.question-link'); p.questions.forEach((q,i)=>{if(links[i]){const strong=links[i].querySelector('strong'); if(strong)strong.textContent=q.title; else links[i].lastChild.textContent=' '+q.title;}});
+  const dash=p.dashboard; const ds=document.querySelector('.dashboard-section'); if(ds){const e=ds.querySelector('.eyebrow');const h=ds.querySelector('h2');const pp=ds.querySelector('p');if(e)e.textContent=dash.eyebrow;if(h)h.textContent=dash.title;if(pp)pp.textContent=dash.text;}
+  const ov=p.overall; const os=document.querySelector('.overall-insights'); if(os){const e=os.querySelector('.eyebrow'),h=os.querySelector('h2'),intro=os.querySelector('.overall-intro');if(e)e.textContent=ov.eyebrow;if(h)h.textContent=ov.title;if(intro)intro.textContent=ov.intro;const items=os.querySelectorAll('.overall-item');ov.items.forEach((it,i)=>{if(items[i]){const hh=items[i].querySelector('h3'),pp=items[i].querySelector('p');if(hh)hh.textContent=it.title;if(pp)pp.textContent=it.text;}})}
+  const c=p.conclusion; const cs=document.querySelector('.conclusion-section');if(cs){const e=cs.querySelector('.eyebrow'),h=cs.querySelector('h2'),pp=cs.querySelector('p');if(e)e.textContent=c.eyebrow;if(h)h.textContent=c.title;if(pp)pp.textContent=c.text;}
+  const r=p.repo;const rs=document.querySelector('.repo-section');if(rs){const e=rs.querySelector('.eyebrow'),h=rs.querySelector('h2'),pp=rs.querySelector('p'),a=rs.querySelector('a.github-button');if(e)e.textContent=r.eyebrow;if(h)h.textContent=r.title;if(pp)pp.textContent=r.text;if(a&&r.url)a.href=r.url;}
+  const homeLinks=document.querySelectorAll('a[href="index.html"]'); homeLinks.forEach(a=>a.href='index.html');
+})();
+</script>
+</body></html>

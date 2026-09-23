@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1.0" name="viewport"/><meta content="Retail Sales Performance Analysis — Anudeep Marapally" name="description"/><title>Retail Sales Performance Analysis | Anudeep Marapally</title><link href="style.css" rel="stylesheet"/>
+<style>
+.project-page{--pp-bg:#f7f9fc;--pp-card:#fff;--pp-text:#172033;--pp-muted:#657085;--pp-blue:#2f6fed;--pp-blue2:#174ea6;--pp-line:#dfe6ef;--pp-soft:#eef5ff;background:var(--pp-bg);color:var(--pp-text);min-height:100vh}
+.project-page *{box-sizing:border-box}.project-page a{text-decoration:none;color:inherit}.project-header{position:sticky;top:0;z-index:30;display:grid;grid-template-columns:minmax(280px,1fr) auto;align-items:stretch;min-height:70px;background:#fff;border-bottom:1px solid var(--pp-line);box-shadow:0 4px 18px rgba(35,59,91,.05)}
+.project-title{display:flex;align-items:center;padding:14px 24px;font-size:1.16rem;font-weight:850;letter-spacing:-.025em;min-width:0}.project-title span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.project-actions{display:flex;align-items:center;gap:8px;padding:10px 18px}.project-action{display:inline-flex;align-items:center;justify-content:center;min-width:112px;padding:10px 14px;border:1px solid #c9d7ec;border-radius:8px;background:#fff;color:#244d8e;font-size:.72rem;font-weight:850;letter-spacing:.04em}.project-action.primary{background:var(--pp-blue);border-color:var(--pp-blue);color:#fff}.project-action:hover{transform:translateY(-1px);box-shadow:0 5px 15px rgba(47,111,237,.14)}
+.project-main{width:min(1540px,100%);margin:0 auto;padding:14px 16px 65px}.project-cards{display:grid;grid-template-columns:1.35fr .95fr 1.05fr;gap:10px;margin-bottom:10px}.info-card{min-height:82px;padding:12px 16px;border:1px solid var(--pp-line);border-radius:8px;background:#fff}.card-label{display:block;margin-bottom:6px;color:#3b67b1;font-size:.66rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase}.info-card p{margin:0;color:#4e5b6f;font-size:.78rem;line-height:1.45}.info-card a{color:var(--pp-blue);font-weight:800}.data-area{display:grid;grid-template-columns:1fr 1.18fr;gap:0;border:1px solid var(--pp-line);border-radius:8px;background:#fff;margin-bottom:14px}.data-block{padding:13px 16px;min-width:0}.data-block+.data-block{border-left:1px solid var(--pp-line)}.data-block h3{margin:0 0 8px;font-size:.78rem;letter-spacing:.03em}.data-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 18px}.data-item{font-size:.72rem;color:#536074;line-height:1.45}.data-item b{color:#26344b}.clean-list{margin:0;padding-left:16px;color:#536074;font-size:.72rem;line-height:1.45;columns:2;column-gap:28px}.clean-list li{break-inside:avoid;margin-bottom:4px}
+.analysis-shell{display:grid;grid-template-columns:292px minmax(0,1fr);gap:12px;align-items:start}.question-sidebar{position:sticky;top:84px;max-height:calc(100vh - 98px);overflow:auto;border:1px solid var(--pp-line);border-radius:8px;background:#fff}.questions-heading{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border-bottom:1px solid var(--pp-line);font-size:.72rem;font-weight:900;letter-spacing:.08em}.questions-heading small{color:#7b8799;font-size:.58rem;letter-spacing:.05em}.question-list{padding:7px}.question-link{width:100%;display:grid;grid-template-columns:31px 1fr;gap:8px;align-items:start;text-align:left;padding:8px 7px;margin:1px 0;border:0;border-radius:7px;background:transparent;color:#566276;cursor:pointer}.question-link span{display:grid;place-items:center;width:27px;height:27px;border:1px solid #d6deea;border-radius:6px;color:#65758c;font-size:.63rem;font-weight:900}.question-link strong{font-size:.69rem;line-height:1.3;font-weight:700;padding-top:4px}.question-link:hover{background:#f2f7ff;color:#2457aa}.question-link:focus,.question-link:active{background:#eaf3ff;color:#1d55b0;box-shadow:inset 3px 0 0 var(--pp-blue)}.question-link:focus span,.question-link:active span{background:var(--pp-blue);border-color:var(--pp-blue);color:#fff}
+.analysis-main{min-width:0}.main-tab-label{margin:0 0 8px;padding:9px 12px;border:1px solid var(--pp-line);border-radius:7px;background:#fff;color:#5d6b80;font-size:.67rem;font-weight:900;letter-spacing:.1em}.question-panel{scroll-margin-top:90px;margin-bottom:10px;border:1px solid var(--pp-line);border-radius:8px;background:#fff;overflow:hidden}.question-panel + .question-panel{position:relative;margin-top:14px}.question-panel + .question-panel::before{content:"";position:absolute;left:0;right:0;top:-8px;height:1px;background:#cbd7e8}.question-panel:target{border-color:#9fc2fb;box-shadow:0 8px 22px rgba(47,111,237,.08)}.question-head{display:flex;align-items:center;gap:10px;padding:9px 12px;border-bottom:1px solid var(--pp-line);background:#fbfdff}.q-num{flex:0 0 auto;color:var(--pp-blue);font-size:.7rem;font-weight:950}.question-head h2{margin:0;font-size:.82rem;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:-.01em}.question-body{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(260px,.75fr);gap:0}.query-block{min-width:0;padding:11px 13px}.insight-block{padding:11px 13px;border-left:1px solid var(--pp-line);background:#fbfdff}.block-label{margin-bottom:6px;color:#3266b8;font-size:.61rem;font-weight:900;letter-spacing:.1em}.query-block pre{margin:0;max-height:none;overflow:visible;white-space:pre-wrap;word-break:break-word;background:#f5f8fc;border:1px solid #e0e7f0;border-radius:6px;padding:10px 11px;color:#26364d;font:500 .64rem/1.42 ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace}.insight-block p{margin:0;color:#4f5c70;font-size:.74rem;line-height:1.52}.insight-highlight{color:#137b4b;font-weight:850}.analysis-note{margin:8px 0 0;color:#7a8799;font-size:.66rem}
+.dashboard-section{margin-top:22px;scroll-margin-top:90px}.section-heading{margin-bottom:9px}.section-heading h2{margin:0 0 4px;font-size:1.18rem;letter-spacing:-.025em}.section-heading p:last-child{margin:0;color:var(--pp-muted);font-size:.73rem}.dashboard-frame{border:1px solid var(--pp-line);border-radius:8px;background:#fff;overflow:hidden;padding:8px}.dashboard-frame img{display:block;width:100%;max-height:620px;object-fit:contain;background:#f4f8ff}.dashboard-frame .dash-placeholder{min-height:280px;display:grid;place-items:center;color:#71809a;background:#f4f8ff;font-size:.8rem}.dashboard-link-row{display:flex;justify-content:flex-end;margin-top:8px}.dashboard-link{display:inline-flex;padding:9px 14px;border-radius:7px;background:var(--pp-blue);color:#fff!important;font-size:.68rem;font-weight:900}.conclusion-section,.repo-section{margin-top:10px;padding:14px 16px;border:1px solid var(--pp-line);border-radius:8px;background:#fff}.conclusion-section{display:grid;grid-template-columns:230px 1fr;gap:20px;align-items:start}.conclusion-section h2,.repo-section h2{margin:0 0 5px;font-size:1rem}.conclusion-section p,.repo-section p{margin:0;color:#536074;font-size:.75rem;line-height:1.55}.repo-section{display:flex;justify-content:space-between;align-items:center;gap:20px}.github-button{display:inline-flex;align-items:center;gap:8px;white-space:nowrap;padding:10px 14px;border-radius:7px;background:#172033;color:#fff!important;font-size:.68rem;font-weight:900}.detail-footer{display:flex;justify-content:space-between;margin-top:10px;padding:14px 4px;color:#71809a;font-size:.72rem}.detail-footer a:hover{color:var(--pp-blue)}.detail-footer .footer-links{display:flex;gap:18px;align-items:center}.detail-footer span{white-space:nowrap}
+@media(max-width:1000px){.project-cards{grid-template-columns:1fr 1fr}.project-cards .info-card:first-child{grid-column:1/-1}.analysis-shell{grid-template-columns:250px minmax(0,1fr)}.question-body{grid-template-columns:1fr}.insight-block{border-left:0;border-top:1px solid var(--pp-line)}}
+@media(max-width:760px){.project-header{position:relative;grid-template-columns:1fr}.project-title{padding:13px 16px}.project-actions{padding:0 16px 12px}.project-action{flex:1}.project-main{padding:10px 10px 45px}.project-cards{grid-template-columns:1fr}.project-cards .info-card:first-child{grid-column:auto}.data-area{grid-template-columns:1fr}.data-block+.data-block{border-left:0;border-top:1px solid var(--pp-line)}.clean-list{columns:1}.analysis-shell{display:block}.question-sidebar{position:relative;top:auto;max-height:none;margin-bottom:10px}.question-list{display:grid;grid-template-columns:1fr 1fr;gap:2px}.question-link{margin:0}.question-head h2{white-space:normal}.question-body{grid-template-columns:1fr}.insight-block{border-left:0;border-top:1px solid var(--pp-line)}.conclusion-section{grid-template-columns:1fr;gap:8px}.repo-section{display:grid}.github-button{justify-content:center}}
+</style>
+<style>
+/* v12 project-detail refinements */
+.project-page .project-main{width:min(1680px,100%);padding-left:10px;padding-right:10px}
+.project-page .project-cards{gap:8px}
+.project-page .info-card{min-height:68px;padding:10px 14px}
+.project-page .card-label{font-size:.72rem;color:#1d55b0;letter-spacing:.075em;margin-bottom:4px}
+.project-page .info-card p{font-size:.82rem;color:#26344b;line-height:1.42;font-weight:560}
+.project-page .info-card a{color:#174ea6;font-weight:800}
+.project-page .questions-heading{padding:10px 13px;color:#172033;font-size:.78rem;background:#f8fbff}
+.project-page .questions-heading small{display:none}
+.project-page .analysis-shell{grid-template-columns:330px minmax(0,1fr);gap:10px}
+.project-page .question-sidebar{top:82px}
+.project-page .question-link{padding:9px 8px}
+.project-page .question-link strong{font-size:.72rem;color:#3b485c}
+.project-page .question-link.active{background:#eaf3ff;color:#174ea6;box-shadow:inset 3px 0 0 #2f6fed}
+.project-page .question-link.active strong{color:#174ea6;font-weight:850}
+.project-page .question-link.active span{background:#2f6fed;border-color:#2f6fed;color:#fff}
+.project-page .question-panel{margin-bottom:18px}
+.project-page .question-panel + .question-panel{margin-top:18px}
+.project-page .question-panel + .question-panel::before{top:-10px;background:#9eb1ca;height:2px}
+.project-page .question-panel.is-active{border-color:#a9c8f7;box-shadow:0 7px 20px rgba(47,111,237,.08)}
+.project-page .question-head{padding:10px 13px;background:#f8fbff}
+.project-page .question-head h2{font-size:.88rem;color:#172033}
+.project-page .q-num{font-size:.72rem}
+.project-page .block-label{font-size:.66rem;color:#174ea6}
+.project-page .query-block pre{font-size:.68rem;line-height:1.48}
+.project-page .insight-block p{font-size:.78rem;color:#26344b}
+.project-page .main-tab-label{font-size:.7rem;color:#174ea6;background:#f8fbff;font-weight:900}
+.project-page .overall-insights{margin-top:22px;padding:16px;border:1px solid #cfdbea;border-radius:8px;background:#fff}
+.project-page .overall-insights .section-heading{margin-bottom:11px}
+.project-page .overall-insights .section-heading h2{color:#172033}
+.project-page .overall-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}
+.project-page .overall-item{padding:12px;border:1px solid #dfe6ef;border-radius:7px;background:#f8fbff}
+.project-page .overall-item h3{margin:0 0 5px;color:#174ea6;font-size:.78rem;line-height:1.25}
+.project-page .overall-item p{margin:0;color:#3f4c60;font-size:.73rem;line-height:1.5}
+.project-page .overall-intro{margin:0;color:#536074;font-size:.76rem;line-height:1.55}
+.project-page .conclusion-section{margin-top:12px;border-color:#c6d4e5;background:#fff}
+.project-page .conclusion-section h2{color:#172033;font-size:1.08rem}
+.project-page .conclusion-section p{font-size:.79rem;color:#26344b;line-height:1.65}
+@media(max-width:1100px){.project-page .analysis-shell{grid-template-columns:285px minmax(0,1fr)}.project-page .overall-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:760px){.project-page .project-main{padding-left:10px;padding-right:10px}.project-page .analysis-shell{grid-template-columns:1fr}.project-page .overall-grid{grid-template-columns:1fr}}
+</style>
+<style>
+/* Project-view responsive fix: questions are always one per row.
+   On smaller screens the Questions panel sits above Main Analysis. */
+.project-page .question-list{
+  display:block !important;
+}
+.project-page .question-link{
+  display:grid !important;
+  grid-template-columns:31px minmax(0,1fr) !important;
+  width:100% !important;
+  margin:1px 0 !important;
+}
+@media (max-width:900px){
+  .project-page .analysis-shell{
+    display:block !important;
+  }
+  .project-page .question-sidebar{
+    position:relative !important;
+    top:auto !important;
+    max-height:none !important;
+    width:100% !important;
+    margin-bottom:10px !important;
+  }
+  .project-page .analysis-main{
+    width:100% !important;
+  }
+}
+</style>
+
+</head><body class="project-page" id="top">
+<header class="project-header"><a class="project-title" href="projects.html"><span>Retail Sales Performance Analysis</span></a><div class="project-actions"><a class="project-action" href="index.html">MAIN HOME</a><a class="project-action primary" href="projects.html">PROJECTS PAGE</a></div></header>
+<main class="project-main">
+<section class="project-cards"><div class="info-card"><span class="card-label">PROJECT OVERVIEW</span><p>Excel project that cleans a deliberately messy retail dataset and turns it into customer, product, category, seasonal, payment and channel analysis.</p></div><div class="info-card"><span class="card-label">TOOLS &amp; TECHNOLOGIES</span><p>Microsoft Excel · Excel Formulas · Data Cleaning · Pivot Tables · Feature Engineering · Business Analysis</p></div><div class="info-card"><span class="card-label">DATA SOURCE</span><p><a href="https://www.kaggle.com/datasets/ahmedmohamed2003/retail-store-sales-dirty-for-data-cleaning" rel="noopener noreferrer" target="_blank">Retail Store Sales Dirty for Data Cleaning ↗</a></p></div></section>
+<section class="data-area"><div class="data-block"><h3>DATA OVERVIEW</h3><div class="data-grid"><div class="data-item"><b>Dirty retail transaction dataset</b></div><div class="data-item"><b>Customer-level analysis</b></div><div class="data-item"><b>Product and category dimensions</b></div><div class="data-item"><b>Seasonal comparisons</b></div><div class="data-item"><b>Online vs in-store channels</b></div></div></div><div class="data-block"><h3>DATA CLEANING &amp; PREPARATION</h3><ul class="clean-list"><li>Audited the raw file for missing, inconsistent and malformed values</li><li>Applied business-driven logic to treat nulls rather than blindly deleting records</li><li>Created additional analytical columns for reporting</li><li>Validated the cleaned final table before Pivot analysis</li><li>Separated dimensions needed for customer, product, category and channel comparisons</li><li>Used Pivot Tables to test whether cleaned outputs were internally consistent</li></ul></div></section>
+<section class="analysis-shell"><aside class="question-sidebar"><div class="questions-heading"><span>QUESTIONS</span></div><nav aria-label="Project questions" class="question-list"><a class="question-link" href="#q1"><span>01</span><strong>Which customers generate the highest sales value?</strong></a><a class="question-link" href="#q2"><span>02</span><strong>Which product categories drive the strongest performance?</strong></a><a class="question-link" href="#q3"><span>03</span><strong>Which products are the top revenue contributors?</strong></a><a class="question-link" href="#q4"><span>04</span><strong>When are sales strongest across seasons?</strong></a><a class="question-link" href="#q5"><span>05</span><strong>Which payment methods are most used and valuable?</strong></a><a class="question-link" href="#q6"><span>06</span><strong>How do online and in-store channels compare?</strong></a><a class="question-link" href="#q7"><span>07</span><strong>What should the retailer prioritize after cleaning the data?</strong></a></nav></aside><section class="analysis-main"><div class="main-tab-label">MAIN ANALYSIS · QUESTION → QUERY / ANALYSIS → INSIGHT</div><article class="question-panel" id="q1">
+<div class="question-head"><span class="q-num">01.</span><h2>Which customers generate the highest sales value?</h2></div>
+<div class="question-body"><section class="query-block"><div class="block-label">QUERY / ANALYSIS</div><pre><code>=SUMIFS(Data[Total Sales],Data[Customer ID],A2)</code></pre></section><section class="insight-block"><div class="block-label">INSIGHT</div><p>Customer-level aggregation identifies the highest-value buyers and creates a foundation for targeted retention or loyalty activity.</p></section></div></article><article class="question-panel" id="q2">
+<div class="question-head"><span class="q-num">02.</span><h2>Which product categories drive the strongest performance?</h2></div>
+<div class="question-body"><section class="query-block"><div class="block-label">QUERY / ANALYSIS</div><pre><code>=SUMIFS(Data[Total Sales],Data[Category],A2)</code></pre></section><section class="insight-block"><div class="block-label">INSIGHT</div><p>Category performance shows where revenue is concentrated and where assortment decisions can have the largest commercial effect.</p></section></div></article><article class="question-panel" id="q3">
+<div class="question-head"><span class="q-num">03.</span><h2>Which products are the top revenue contributors?</h2></div>
+<div class="question-body"><section class="query-block"><div class="block-label">QUERY / ANALYSIS</div><pre><code>=SUMIFS(Data[Total Sales],Data[Product],A2)</code></pre></section><section class="insight-block"><div class="block-label">INSIGHT</div><p>Top-product analysis helps distinguish broad category strength from the specific products responsible for sales.</p></section></div></article><article class="question-panel" id="q4">
+<div class="question-head"><span class="q-num">04.</span><h2>When are sales strongest across seasons?</h2></div>
+<div class="question-body"><section class="query-block"><div class="block-label">QUERY / ANALYSIS</div><pre><code>=SUMIFS(Data[Total Sales],Data[Season],A2)</code></pre></section><section class="insight-block"><div class="block-label">INSIGHT</div><p>Seasonal analysis identifies demand cycles that can support inventory and promotional planning.</p></section></div></article><article class="question-panel" id="q5">
+<div class="question-head"><span class="q-num">05.</span><h2>Which payment methods are most used and valuable?</h2></div>
+<div class="question-body"><section class="query-block"><div class="block-label">QUERY / ANALYSIS</div><pre><code>=COUNTIF(Data[Payment Method],A2)</code></pre></section><section class="insight-block"><div class="block-label">INSIGHT</div><p>Payment-method mix shows customer preference and helps identify the checkout methods that matter most to transaction volume.</p></section></div></article><article class="question-panel" id="q6">
+<div class="question-head"><span class="q-num">06.</span><h2>How do online and in-store channels compare?</h2></div>
+<div class="question-body"><section class="query-block"><div class="block-label">QUERY / ANALYSIS</div><pre><code>=SUMIFS(Data[Total Sales],Data[Sales Channel],A2)</code></pre></section><section class="insight-block"><div class="block-label">INSIGHT</div><p>Comparing channels shows whether performance is concentrated online or in-store and provides a basis for channel-specific decisions.</p></section></div></article><article class="question-panel" id="q7">
+<div class="question-head"><span class="q-num">07.</span><h2>What should the retailer prioritize after cleaning the data?</h2></div>
+<div class="question-body"><section class="query-block"><div class="block-label">QUERY / ANALYSIS</div><pre><code>=RANK.EQ(B2,$B$2:$B$20,0)</code></pre></section><section class="insight-block"><div class="block-label">INSIGHT</div><p>The final story combines customer, category, product, seasonal and channel findings instead of treating each Pivot Table as an isolated result.</p></section></div></article><p class="analysis-note">All questions are displayed in order. Select a question on the left to jump directly to its analysis.</p></section></section>
+<section class="dashboard-section"><div class="section-heading"><p class="eyebrow">AFTER THE QUESTIONS</p><h2>Retail Sales Performance Analysis</h2><p>The visual output comes after the analysis so the visitor sees the reasoning before the final picture.</p></div><div class="dashboard-frame"><img alt="Retail Sales Performance Analysis" loading="lazy" src="https://raw.githubusercontent.com/Anudeep-Marapally/Retail_Sales_Performance_Analysis/main/Final_table.png"/></div></section>
+<section class="overall-insights"><div class="section-heading"><p class="eyebrow">OVERALL INSIGHTS</p><h2>Overall Retail Insights</h2><p class="overall-intro">The cleaned retail dataset reveals where revenue is concentrated, when demand peaks and how customers behave across products, payments and sales channels.</p></div><div class="overall-grid"><article class="overall-item"><h3>Customer value is uneven</h3><p>A relatively small set of customers contributes substantial sales value and can support targeted retention efforts.</p></article><article class="overall-item"><h3>Product and category mix drives performance</h3><p>Category and top-product analysis identifies the parts of the assortment with the greatest commercial impact.</p></article><article class="overall-item"><h3>Seasonality should influence planning</h3><p>Demand cycles provide useful signals for inventory and promotional timing.</p></article><article class="overall-item"><h3>Channel and payment behavior matter</h3><p>Online/in-store and payment-method comparisons reveal where transaction activity is concentrated.</p></article></div></section><section class="conclusion-section"><div><p class="eyebrow">CONCLUSION</p><h2>What the project tells us</h2></div><p>The retail analysis demonstrates the value of moving from messy source data to a validated, decision-ready view of performance. Customer value, product mix, seasonality, payment behavior and sales channels each explain a different part of the business. Together, they provide a stronger basis for retention, assortment, inventory and channel decisions than any single Pivot Table or KPI.</p></section>
+<section class="repo-section"><div><p class="eyebrow">MORE INFORMATION</p><h2>Want to inspect the project?</h2><p>Repository includes the underlying project files, analysis and documentation.</p></div><a class="github-button" href="https://github.com/Anudeep-Marapally/Retail_Sales_Performance_Analysis" rel="noopener noreferrer" target="_blank">OPEN GITHUB REPOSITORY <span>↗</span></a></section>
+<footer class="site-footer detail-footer"><span>© 2026 Anudeep Marapally · Data Analytics Portfolio</span><div class="footer-links"><a href="projects.html">← Back to Projects Page</a><a href="index.html">Home</a></div></footer>
+</main>
+</html>
+
+<style>
+/* v13 project-detail-only refinements: synchronized question navigation + consistent tab typography */
+.project-page .question-sidebar{
+  position:sticky;
+  top:84px;
+  max-height:calc(100vh - 98px);
+  overflow-y:auto;
+  overscroll-behavior:contain;
+  scrollbar-width:thin;
+}
+.project-page .question-link{
+  transition:background-color .18s ease, color .18s ease, box-shadow .18s ease, transform .18s ease;
+}
+.project-page .question-link.active{
+  background:#eaf3ff;
+  color:#174ea6;
+  box-shadow:inset 3px 0 0 #2f6fed;
+}
+.project-page .question-link.active strong{color:#174ea6;font-weight:850}
+.project-page .question-link.active span{background:#2f6fed;border-color:#2f6fed;color:#fff}
+.project-page .question-sidebar .question-link.active{
+  scroll-margin-top:8px;
+  scroll-margin-bottom:8px;
+}
+
+/* Keep the three top information tabs visually consistent: clear title vs matter hierarchy. */
+.project-page .info-card{font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+.project-page .info-card .card-label{
+  color:#174ea6;
+  font-size:.68rem;
+  line-height:1.2;
+  font-weight:800;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.project-page .info-card p{
+  color:#334155;
+  font-size:.79rem;
+  line-height:1.48;
+  font-weight:500;
+}
+.project-page .info-card a{color:#174ea6;font-weight:650}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const panels = Array.from(document.querySelectorAll('.question-panel[id]'));
+  const links = Array.from(document.querySelectorAll('.question-link[href^="#"]'));
+  const sidebar = document.querySelector('.question-sidebar');
+  if (!panels.length || !links.length) return;
+
+  const linkFor = (id) => links.find(link => link.getAttribute('href') === '#' + id);
+
+  const setActive = (id, moveSidebar = true) => {
+    links.forEach(link => {
+      const active = link.getAttribute('href') === '#' + id;
+      link.classList.toggle('active', active);
+      if (active) link.setAttribute('aria-current', 'step');
+      else link.removeAttribute('aria-current');
+    });
+
+    panels.forEach(panel => panel.classList.toggle('is-active', panel.id === id));
+
+    // Keep the active question visible inside the left panel. This makes the
+    // question list travel with the analysis instead of appearing frozen.
+    if (moveSidebar) {
+      const activeLink = linkFor(id);
+      if (activeLink && sidebar) {
+        const linkRect = activeLink.getBoundingClientRect();
+        const sideRect = sidebar.getBoundingClientRect();
+        const heading = sidebar.querySelector('.questions-heading');
+        const headingHeight = heading ? heading.getBoundingClientRect().height : 0;
+        const topLimit = sideRect.top + headingHeight + 6;
+        const bottomLimit = sideRect.bottom - 8;
+        if (linkRect.top < topLimit || linkRect.bottom > bottomLimit) {
+          activeLink.scrollIntoView({behavior:'smooth', block:'nearest'});
+        }
+      }
+    }
+  };
+
+  // Pick the question whose heading is closest to the reading position.
+  const updateFromScroll = () => {
+    const marker = window.scrollY + Math.min(150, window.innerHeight * 0.24);
+    let current = panels[0];
+    for (const panel of panels) {
+      if (panel.offsetTop <= marker) current = panel;
+      else break;
+    }
+    setActive(current.id, true);
+  };
+
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        updateFromScroll();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, {passive:true});
+
+  links.forEach(link => {
+    link.addEventListener('click', function (event) {
+      event.preventDefault();
+      const id = this.getAttribute('href').slice(1);
+      const target = document.getElementById(id);
+      if (!target) return;
+      setActive(id, true);
+      target.scrollIntoView({behavior:'smooth', block:'start'});
+      history.replaceState(null, '', '#' + id);
+    });
+  });
+
+  // Respect a question hash when the page opens; otherwise start at Q1.
+  const initial = window.location.hash ? window.location.hash.slice(1) : panels[0].id;
+  const initialPanel = document.getElementById(initial) || panels[0];
+  setActive(initialPanel.id, true);
+  if (window.location.hash && initialPanel) {
+    setTimeout(() => initialPanel.scrollIntoView({behavior:'auto', block:'start'}), 0);
+  }
+});
+</script>
+</body></html>
